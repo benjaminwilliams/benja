@@ -16,10 +16,6 @@ body {
     background: linear-gradient(135deg, rgba(222,226,244,0.3) 0%,rgba(125,185,232,0) 100%);
 }
 
-.mt-large {
-    margin-top: 80px;
-}
-
 /* Blog */
 
 .blog-container {

@@ -1,0 +1,8 @@
+<div>
+    <div class="blog-container">
+        <div class="blog-title">{{currentPost.title}}</div>
+        <div class="blog-date">{{currentPost.dateCreated}} by {{currentPost.author}}</div>
+        <div class="blog-tags" data-ng-repeat="tag in currentPost.tags">{{tag}}</div>
+        <div class="blog-content" data-ng-include src="'data/' + currentPost.name + '/' + currentPost.content"></div>
+    </div>
+</div>

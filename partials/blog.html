@@ -1,0 +1,9 @@
+<!-- Blog posts -->
+<div data-ng-repeat="post in posts | orderBy:blogOrderOption:true">
+    <div class="blog-container">
+        <div class="blog-title">{{post.title}}</div>
+        <div class="blog-date">{{post.dateCreated}} by {{post.author}}</div>
+        <div class="blog-tags" data-ng-repeat="tag in post.tags">{{tag}}</div>
+        <div class="blog-content" data-ng-include src="'data/' + post.name + '/' + post.content"></div>
+    </div>
+</div>

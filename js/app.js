@@ -1,9 +1,35 @@
-var blogApp = angular.module('blogApp', [
+'use strict';
 
+var blogApp = angular.module('blogApp', [
+    'ngRoute'
 ]);
 
+blogApp.config(function($routeProvider, $locationProvider) {
+
+    $routeProvider.
+        when('/blog', {
+            templateUrl: 'partials/blog.html'
+        }).
+        when('/post', {
+            templateUrl: 'partials/post.html',
+            controller: 'blogPostCtrl'
+        }).
+        when('/:postId', {
+            templateUrl: 'partials/post.html',
+            controller: 'blogPostCtrl'
+        }).
+        otherwise({
+            redirectTo: '/blog'
+        });
+
+    $locationProvider.html5Mode(true);
+
+});
+
+
+
 //Controller
-blogApp.controller('appCtrl', function($scope, blogService) {
+blogApp.controller('appCtrl', function($scope, $routeParams, blogService) {
 
     //init
     $scope.index = []; //array that will contain the location of all the files we need
@@ -48,6 +74,45 @@ blogApp.controller('appCtrl', function($scope, blogService) {
 
     getData();
 });
+
+blogApp.controller('blogPostCtrl', function($scope, $routeParams, blogService) {
+
+    $scope.currentPost = "";
+
+    function getCurrentPost() {
+
+        var post = $routeParams.postId;
+        console.log(post);
+
+        blogService.getData(post).then( //call the getData service
+            function (data) {
+                $scope.currentPost = data;
+                //$scope.posts.push({
+                //    "title" : data.title,
+                //    "dateCreated" : data.date,
+                //    "name" : data.name,
+                //    "author" : data.author,
+                //    "content" : data.content,
+                //    "tags" : data.tags
+                //});
+            },
+            function (err) {
+                console.log("error getting file with id: " + post);
+            }
+        )
+    }
+
+    getCurrentPost();
+
+    //$scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function (phone) {
+    //    $scope.mainImageUrl = phone.images[0];
+    //});
+    //
+    //$scope.setImage = function (imageUrl) {
+    //    $scope.mainImageUrl = imageUrl;
+    //};
+});
+
 
 //Service
 blogApp.factory('blogService', function($http, $q) {
