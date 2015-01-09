@@ -22,7 +22,7 @@ blogApp.config(function($routeProvider, $locationProvider) {
             redirectTo: '/blog'
         });
 
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 
 });
 

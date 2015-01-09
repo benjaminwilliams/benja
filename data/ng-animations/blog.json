@@ -1,7 +1,7 @@
 {
-  "name" : "ie-month",
-  "title" : "A month using Internet Explorer",
-  "date" : "2015/01/04",
+  "name" : "ng-animations",
+  "title" : "Using Angular 1.2 Animations",
+  "date" : "8th January 2015",
   "author" : "Ben Williams",
   "content" : "index.html",
   "tags" : [
