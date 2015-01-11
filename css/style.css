@@ -1,4 +1,8 @@
 /* Helpers */
+.my-40 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 
 /* Page */
 body {
@@ -16,29 +20,120 @@ body {
     background: linear-gradient(135deg, rgba(222,226,244,0.3) 0%,rgba(125,185,232,0) 100%);
 }
 
+/* Bootstrap Overrides */
+
+h2 {
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
 /* Blog */
 
 .blog-container {
     background-color: #fff;
+    margin-top: 40px;
+}
+
+.blog-container__header {
+    background-color: #45b7bf;
+    color: #fff;
     padding: 20px;
-    margin-bottom: 20px;
+}
+
+.blog-container__header--1 {
+    background-color: #45b7bf;
+}
+
+.blog-container__header--1 {
+    background-color: #2d787d;
+}
+
+.blog-container__header--2 {
+    background-color: #ca5473;
+}
+
+.blog-container__header--3 {
+    background-color: #8c7e25;
 }
 
 .blog-title {
-    font-size: 26px;
-    font-weight: 600;
-    padding: 20px 0 10px 0;
+    font-size: 30px;
+    font-weight: 300;
+    padding: 0 0 40px 0;
 }
+
+.blog-container__header a {
+    color: #e5e5e5;
+}
+
+.blog-container__header a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
 
 .blog-date,
 .blog-author {
     font-size: 14px;
-    color: #999;
+    color: #e5e5e5;
     float: right;
-    margin-bottom: 40px;
+    padding-top: 15px;
+    margin-bottom: 20px;
 }
 
 .blog-content {
- clear: both;
+    padding: 10px 20px 40px 20px;
+}
+
+.blog-read-more {
+    padding: 20px;
+}
+
+.blog-tags {
+    font-weight: 400;
+    float: right;
+    padding: 20px;
+}
+
+.blog-back-button{
+    background-color: #454545;
+    color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.blog-back-button a {
+    color: #fff;
+}
+
+.blog-back-button a:hover {
+    color: #45b7bf;
+    text-decoration: none;
+}
+
+.blog-icons {
+    font-size: 60px;
+    letter-spacing: 5px;
+}
+
+/* Site-wide styles */
+
+.footer {
+    background-color: #454545;
+    color: #e5e5e5;
+    padding: 60px 0 100px 0;
+    margin-top: 60px;
+}
+
+.header {
+    background-color: #454545;
+    color: #e5e5e5;
+    padding: 60px 0;
+    margin-bottom: 40px;
+}
+
+.header__intro {
+    padding-top: 20px;
 }
 

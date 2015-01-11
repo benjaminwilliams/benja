@@ -1,0 +1,35 @@
+<p>
+    Aligning some text next to a div (or image or icon) can be quite confusing and counter-intuitive.
+    Its one of those problems that appear  enough to be annoying but not enough to remember the fix for next time.
+</p>
+<p>
+    In the following examples I will an icon as an example,
+    but the same will apply for an image or any other block element.
+</p>
+
+<h2> What usually happens </h2>
+<p>
+    floating the icon to the left is usually enough, as long as the text isn't taller than the element. If it is longer,
+    the text wraps under the element.
+</p>
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/benwilliams/t5fA2/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+<h2> Element to the left of the text, text doesn't wrap below element </h2>
+<p>
+    I found this cool trick to stop the text wrapping underneath the element.
+    This looks similar to a unordered list, where the 2nd line indents.
+    Some might argue that a semantically correct html list should be used instead of this trick,
+    but there are cases when you're not trying to create a list.
+</p>
+<p>
+    The fix is a simple 1 line CSS change:
+    <pre>
+        .text {
+            overflow: hidden;
+        }
+    </pre>
+</p>
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/benwilliams/t5fA2/8/embedded/result,html,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

@@ -5,5 +5,65 @@
 <p>
   The confusion can be compounded when searching for answers. The way they work
   was dramatically changed in Angular 1.2 and there is a lot of older information
-  floating around.
+  floating around. This little refresher will hopfully help jog my memory (and maybe your's too) for next
+  time.
 </p>
+<h2>The setup</h2>
+
+<p>
+  Remember to inject the ngAnimate module and include the angular-animation.min.js file.
+</p>
+
+<p>The html</p>
+<pre>
+
+  &lt;div ng-show="showHello" class="hello animate"&gt;
+    hello
+  &lt;/div&gt;
+</pre>
+<p>Animating ng-show and ng-hide</p>
+
+<pre>
+  /*
+   * The All important display block (or inline-block)
+   * This overrides the default ng-hide's display: none
+   */
+  .animate.ng-hide-add,
+  .animate.ng-hide-remove {
+    display:inline-block!important;
+  }
+
+  /*
+   * The transition
+   * note: it is applied to the same class as above and has
+   * only been seperated for this demonstration
+   */
+  .animate.ng-hide-add,
+  .animate.ng-hide-remove {
+    -webkit-transition:all linear 1s;
+    -moz-transition:all linear 1s;
+    -o-transition:all linear 1s;
+    transition:all linear 1s;
+  }
+
+  /*
+   * start state
+   * this is where it gets confusing.
+   */
+  .animate.ng-hide-add.ng-hide-add-active, /* Applied when the ng-hide is being added */
+  .animate.ng-hide-remove { /* Applied when ng-hide is being removed */
+    opacity:0;
+  }
+
+   /*
+   * End state
+   * Its still confusing
+   */
+  .animate.ng-hide-add, /* Applied when ng-hide is being added */
+  .animate.ng-hide-remove.ng-hide-remove-active { /* applied when ng-hide is being removed */
+    opacity:1;
+  }
+
+</pre>
+<h2>Example</h2>
+<iframe width="100%" height="300" src="http://jsfiddle.net/benwilliams/2hzLr4kc/embedded/result,css,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

@@ -8,13 +8,10 @@ blogApp.config(function($routeProvider, $locationProvider) {
 
     $routeProvider.
         when('/blog', {
-            templateUrl: 'partials/blog.html'
+            templateUrl: 'partials/blog.html',
+            controller: 'indexCtrl'
         }).
-        when('/post', {
-            templateUrl: 'partials/post.html',
-            controller: 'blogPostCtrl'
-        }).
-        when('/:postId', {
+        when('/blog/:postId', {
             templateUrl: 'partials/post.html',
             controller: 'blogPostCtrl'
         }).
@@ -22,7 +19,7 @@ blogApp.config(function($routeProvider, $locationProvider) {
             redirectTo: '/blog'
         });
 
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 
 });
 
@@ -31,6 +28,12 @@ blogApp.config(function($routeProvider, $locationProvider) {
 //Controller
 blogApp.controller('appCtrl', function($scope, $routeParams, blogService) {
 
+    $scope.currentYear = new Date().getFullYear();
+
+});
+
+blogApp.controller('indexCtrl', function($scope, $routeParams, blogService) {
+
     //init
     $scope.index = []; //array that will contain the location of all the files we need
     $scope.posts = []; //array that will be filled by the blogService
@@ -38,7 +41,7 @@ blogApp.controller('appCtrl', function($scope, $routeParams, blogService) {
     $scope.blogOrderOption = "dateCreated";
 
     // retrieve the data from the service
-     function getData() {
+    function getData() {
         blogService.getIndexData().then(
             function(data) {
                 $scope.index = data;
@@ -55,7 +58,9 @@ blogApp.controller('appCtrl', function($scope, $routeParams, blogService) {
                                 "name" : data.name,
                                 "author" : data.author,
                                 "content" : data.content,
-                                "tags" : data.tags
+                                "tags" : data.tags,
+                                "blurb" : data.blurb,
+                                "color" : data.color
                             });
 
                         },
@@ -69,32 +74,41 @@ blogApp.controller('appCtrl', function($scope, $routeParams, blogService) {
             function() {
                 console.log("error getting index file");
             });
-     }
+    }
 
 
     getData();
+
+    $scope.postContent = function(content, blurb){
+        if(blurb){ // Display the blurb if there is one
+            return blurb;
+        }
+        else{ // otherwise, display the full content
+            return content;
+        }
+    };
+
+    $scope.setColor = function(id){
+        return "blog-container__header--" + id;
+    }
 });
 
 blogApp.controller('blogPostCtrl', function($scope, $routeParams, blogService) {
 
     $scope.currentPost = "";
 
+    $scope.postId = $routeParams.postId;
+
+
+
     function getCurrentPost() {
 
         var post = $routeParams.postId;
-        console.log(post);
+
 
         blogService.getData(post).then( //call the getData service
             function (data) {
                 $scope.currentPost = data;
-                //$scope.posts.push({
-                //    "title" : data.title,
-                //    "dateCreated" : data.date,
-                //    "name" : data.name,
-                //    "author" : data.author,
-                //    "content" : data.content,
-                //    "tags" : data.tags
-                //});
             },
             function (err) {
                 console.log("error getting file with id: " + post);
@@ -104,13 +118,9 @@ blogApp.controller('blogPostCtrl', function($scope, $routeParams, blogService) {
 
     getCurrentPost();
 
-    //$scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function (phone) {
-    //    $scope.mainImageUrl = phone.images[0];
-    //});
-    //
-    //$scope.setImage = function (imageUrl) {
-    //    $scope.mainImageUrl = imageUrl;
-    //};
+    $scope.setColor = function(id){
+        return "blog-container__header--" + id;
+    }
 });
 
 
@@ -140,15 +150,18 @@ blogApp.factory('blogService', function($http, $q) {
          */
         getData: function(id) {
 
-            var deferred = $q.defer();
-            $http.get('data/' + id + '/blog.json')
-                .success(function(data) {
-                    deferred.resolve(data);
-                }).error(function(msg, code) {
-                    deferred.reject(msg);
-                    console.log("error: " + msg);
-                });
-            return deferred.promise;
+            if(id){
+                var deferred = $q.defer();
+                $http.get('data/' + id + '/blog.json')
+                    .success(function(data) {
+                        deferred.resolve(data);
+                    }).error(function(msg, code) {
+                        deferred.reject(msg);
+                        console.log("error: " + msg);
+                    });
+                return deferred.promise;
+            }
+
         }
     }
 });
