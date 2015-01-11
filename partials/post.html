@@ -1,8 +1,33 @@
 <div>
+
+    <a href="#/blog"><div class="blog-back-button ">Back to all posts</div></a>
+
+
     <div class="blog-container">
-        <div class="blog-title">{{currentPost.title}}</div>
-        <div class="blog-date">{{currentPost.dateCreated}} by {{currentPost.author}}</div>
-        <div class="blog-tags" data-ng-repeat="tag in currentPost.tags">{{tag}}</div>
+
+
+        <div class="blog-container__header" data-ng-class="setColor(currentPost.color)">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="blog-title">{{currentPost.title}}</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-date">{{currentPost.date}} by {{currentPost.author}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="blog-tags">
+                    tags:
+                    <span data-ng-repeat="tag in currentPost.tags">{{tag}} </span>
+                </div>
+            </div>
+        </div>
         <div class="blog-content" data-ng-include src="'data/' + currentPost.name + '/' + currentPost.content"></div>
     </div>
+
+
+        <a href="#/blog"><div class="blog-back-button my-40">Back to all posts</div></a>
+
 </div>

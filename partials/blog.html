@@ -1,9 +1,31 @@
 <!-- Blog posts -->
+
 <div data-ng-repeat="post in posts | orderBy:blogOrderOption:true">
     <div class="blog-container">
-        <div class="blog-title">{{post.title}}</div>
-        <div class="blog-date">{{post.dateCreated}} by {{post.author}}</div>
-        <div class="blog-tags" data-ng-repeat="tag in post.tags">{{tag}}</div>
-        <div class="blog-content" data-ng-include src="'data/' + post.name + '/' + post.content"></div>
+        <div class="blog-container__header" data-ng-class="setColor(post.color)">
+            <div class="row">
+                <div class="col-md-8">
+                    <a data-ng-href="#/blog/{{post.name}}"><div class="blog-title">{{post.title}}</div></a>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-date">{{post.dateCreated}} by {{post.author}}</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="blog-tags">
+                    tags:
+                    <span data-ng-repeat="tag in post.tags">{{tag}} </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="blog-content" data-ng-include src="'data/' + post.name + '/' + postContent(post.content, post.blurb)"></div>
+        <div class="blog-read-more">
+            <a data-ng-href="#/blog/{{post.name}}">Read more...</a>
+        </div>
     </div>
 </div>

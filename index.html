@@ -17,28 +17,51 @@
     <base href="/benja/">
 
     <script src="js/app.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container" data-ng-app="blogApp" data-ng-controller="appCtrl">
 
-    <!-- intro -->
-    <h1>Benjamin Williams</h1>
-    <p>
-        Hi, I'm Ben. You can find me on
-        <a href="https://twitter.com/benlwilliams">twitter</a>,
-        <a href="https://github.com/benjaminwilliams">github</a>,
-        <a href="https://plus.google.com/+BenWilliamsnet/posts?hl=en">google+</a>,
-        <a href="http://jsfiddle.net/user/benwilliams/fiddles/">jsfiddle</a>,
-        <a href="http://www.linkedin.com/profile/view?id=231856005">linkedin</a>
-        or maybe you just want to email me at <a href="mailto:benj@minwilliams.net">benj@minwilliams.net</a>
-    </p>
+<div data-ng-app="blogApp" data-ng-controller="appCtrl">
+
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h1>Benjamin Williams</h1>
+                </div>
+                <div class="col-md-8 blog-icons ">
+                    <div class="pull-right">
+                        <a href="https://github.com/benjaminwilliams"><i class="fa fa-github"></i></a>
+                        <a href="https://twitter.com/benlwilliams"><i class="fa fa-twitter"></i></a>
+                        <a href="http://jsfiddle.net/user/benwilliams/fiddles/"><i class="fa fa-jsfiddle"></i></a>
+                        <a href="https://plus.google.com/+BenWilliamsnet/posts?hl=en"><i class="fa fa-google-plus"></i></a>
+                        <a href="http://www.linkedin.com/profile/view?id=231856005"><i class="fa fa-linkedin-square"></i></a>
+                        <a href="mailto:benj@minwilliams.net"><i class="fa fa-envelope"></i></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="header__intro">
+                <p>
+                    Hi! Im Ben, a Front-end web developer from the Central Coast currently working in Newcastle.
+                    I like all things technology, gaming, coffee, Formula 1, NFL and lots of genres of music, especially EDM
+                    and power metal. Sometimes I write about these things, so here are my ramblings.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
 
     <div>
        <div data-ng-view></div>
     </div>
 
-
-
+    </div>
+    <div class="footer">
+        <div class="container">
+            Copyright &copy; {{currentYear}} Ben Williams. All code licensed under <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
+        </div>
+    </div>
 </div>
 
 </body>
