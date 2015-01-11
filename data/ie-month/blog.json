@@ -4,6 +4,8 @@
   "date" : "6th January 2015",
   "author" : "Ben Williams",
   "content" : "index.html",
+  "blurb" : "short.html",
+  "color" : "1",
   "tags" : [
     "tools",
     "webdev"
