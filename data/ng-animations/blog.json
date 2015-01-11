@@ -4,8 +4,10 @@
   "date" : "8th January 2015",
   "author" : "Ben Williams",
   "content" : "index.html",
+  "blurb" : "short.html",
+  "color" : "2",
   "tags" : [
-    "tools",
-    "webdev"
+    "AngularJS",
+    "css"
   ]
 }
