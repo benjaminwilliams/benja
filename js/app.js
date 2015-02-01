@@ -7,16 +7,16 @@ var blogApp = angular.module('blogApp', [
 blogApp.config(function($routeProvider, $locationProvider) {
 
     $routeProvider.
-        when('/blog', {
+        when('/', {
             templateUrl: 'partials/blog.html',
             controller: 'indexCtrl'
         }).
-        when('/blog/:postId', {
+        when('/:postId', {
             templateUrl: 'partials/post.html',
             controller: 'blogPostCtrl'
         }).
         otherwise({
-            redirectTo: '/blog'
+            redirectTo: '/'
         });
 
     $locationProvider.html5Mode({
