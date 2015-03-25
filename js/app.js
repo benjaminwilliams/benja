@@ -11,18 +11,13 @@ blogApp.config(function($routeProvider, $locationProvider) {
             templateUrl: 'partials/blog.html',
             controller: 'indexCtrl'
         }).
-        when('/:postId', {
+        when('/blog/:postId', {
             templateUrl: 'partials/post.html',
             controller: 'blogPostCtrl'
         }).
         otherwise({
             redirectTo: '/'
         });
-
-    $locationProvider.html5Mode({
-        enabled: true
-    });
-
 });
 
 
@@ -30,13 +25,15 @@ blogApp.config(function($routeProvider, $locationProvider) {
 //Controller
 blogApp.controller('appCtrl', function($scope, $routeParams, blogService) {
 
-    $scope.notLoading = false; //show loading spinner until not loading
+
 
     $scope.currentYear = new Date().getFullYear();
 
 });
 
 blogApp.controller('indexCtrl', function($scope, $routeParams, blogService) {
+
+    $scope.loading = true; //show loading spinner until not loading
 
     //init
     $scope.index = []; //array that will contain the location of all the files we need
@@ -75,11 +72,12 @@ blogApp.controller('indexCtrl', function($scope, $routeParams, blogService) {
                     )
                 }
 
-                $scope.notLoading = true; //we have finished loading
+                $scope.loading = false; //we have finished loading
 
             },
             function() {
                 console.log("error getting index file");
+                $scope.loading = false; //we have finished loading
             });
     }
 
@@ -102,6 +100,8 @@ blogApp.controller('indexCtrl', function($scope, $routeParams, blogService) {
 
 blogApp.controller('blogPostCtrl', function($scope, $routeParams, blogService) {
 
+    $scope.loading = true; //show loading spinner until not loading
+
     $scope.currentPost = "";
 
     $scope.postId = $routeParams.postId;
@@ -116,9 +116,11 @@ blogApp.controller('blogPostCtrl', function($scope, $routeParams, blogService) {
         blogService.getData(post).then( //call the getData service
             function (data) {
                 $scope.currentPost = data;
+                $scope.loading = false; //we have finished loading
             },
             function (err) {
                 console.log("error getting file with id: " + post);
+                $scope.loading = false; //we have finished loading
             }
         )
     }

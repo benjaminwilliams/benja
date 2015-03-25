@@ -14,9 +14,6 @@
     <script src="https://code.angularjs.org/1.2.28/angular-resource.min.js"></script>
     <script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
 
-    <base href="/">
-
-
     <script src="js/app.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
@@ -52,7 +49,7 @@
         </div>
     </div>
     <div class="container">
-    <div class="loading" data-ng-hide="notLoading"></div>
+    <div class="loading" data-ng-show="loading"></div>
     <div>
        <div data-ng-view></div>
     </div>
