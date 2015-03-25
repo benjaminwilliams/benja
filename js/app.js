@@ -30,6 +30,8 @@ blogApp.config(function($routeProvider, $locationProvider) {
 //Controller
 blogApp.controller('appCtrl', function($scope, $routeParams, blogService) {
 
+    $scope.notLoading = false; //show loading spinner until not loading
+
     $scope.currentYear = new Date().getFullYear();
 
 });
@@ -39,6 +41,7 @@ blogApp.controller('indexCtrl', function($scope, $routeParams, blogService) {
     //init
     $scope.index = []; //array that will contain the location of all the files we need
     $scope.posts = []; //array that will be filled by the blogService
+
 
     $scope.blogOrderOption = "dateCreated";
 
@@ -71,6 +74,8 @@ blogApp.controller('indexCtrl', function($scope, $routeParams, blogService) {
                         }
                     )
                 }
+
+                $scope.notLoading = true; //we have finished loading
 
             },
             function() {
